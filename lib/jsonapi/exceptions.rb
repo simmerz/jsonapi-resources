@@ -505,7 +505,7 @@ module JSONAPI
 
       def metadata_for(attr_key, message)
         return if error_metadata.nil?
-        error_metadata[attr_key] ? error_metadata[attr_key][message] : nil
+        error_metadata.dig(attr_key, message) || error_metadata.dig(attr_key)
       end
 
       def detail(attr_key, message)
